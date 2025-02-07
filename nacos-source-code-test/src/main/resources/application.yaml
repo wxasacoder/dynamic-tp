@@ -1,2 +1,30 @@
 server:
   port: 8964
+spring:
+  application:
+    name: nacos-dy
+  config:
+    import:
+      - nacos:dynamic-tp-nacos-test.yaml
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_DISCOVERY_ADDR:192.168.5.66:8848}
+        heart-beat-interval: 1000
+        namespace: ${NACOS_DISCOVERY_NAME_SPACE:b435d065-6a06-433d-8d1f-03c81a70221f}
+        group: ${NACOS_DISCOVERY_GROUP:WX_TEST}
+        ephemeral: ${EPHEMERAL:true}
+        service: ${spring.application.name}
+        #        metadata:
+        #          preserved.heart.beat.interval: 1
+        #          preserved.heart.beat.timeout: 3
+        #          preserved.ip.delete.timeout: 3
+        heart-beat-timeout: 3000
+        ip-delete-timeout: 3000
+      config:
+        server-addr: ${NACOS_CONFIG_ADDR:192.168.5.66:8848}
+        file-extension: yaml
+        group: ${NACOS_CONFIG_GROUP:WX_TEST}
+        enabled: true #false:会根据spring.profiles.active读取本地文件
+        namespace: ${NACOS_CONFIG_NAME_SPACE:b435d065-6a06-433d-8d1f-03c81a70221f}
+        refresh-enabled: true
