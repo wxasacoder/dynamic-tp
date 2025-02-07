@@ -50,6 +50,7 @@
         <module>dependencies</module>
         <module>spring</module>
         <module>source-code</module>
+        <module>nacos-source-code-test</module>
     </modules>
 
     <dependencies>
