@@ -42,7 +42,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Dynamic ThreadPoolExecutor, extending ThreadPoolExecutor, implements some new features
- *
+ *  意在增加 原生ThreadPoolExecutor的能力，通过实现这个接口针对不同的线程池实现一系列的 adapter
  * @author yanhom
  * @since 1.0.0
  **/
