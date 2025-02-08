@@ -45,7 +45,19 @@ public class CloudNacosRefresher extends AbstractSpringRefresher implements Smar
 
     @Override
     public void onApplicationEvent(@NonNull ApplicationEvent event) {
-        if (needRefresh(((EnvironmentChangeEvent) event).getKeys())) {
+        /**
+         * ContextRefresher 这个 监听器会 监听 RefreshEvent
+         * 然后将传递过来的 新的env 和 内存中的env 进行对比
+         * 随后 对比出来发生的变化的key，随后发送 EnvironmentChangeEvent dy-tp监听次 event 随后进行后续的动作
+         *
+         *
+         * 附注：
+         * nacos 能够实现刷新的原理的是，在引入 nacos 的config的stater的引用的时候，会引入 NacosConfigAutoConfiguration 在这个配置之中会引入 NacosContextRefresher
+         * 这个 refresher 是一个监听器，他会监听容器准备完毕事件， 随后注册一个 com.alibaba.nacos.api.config.listener.Listener
+         * 随后当这个 listener 被调用的时候，会发出一个 RefreshEvent 后续的流程就是上面的运行过程
+         *
+         */
+        if (needRefresh(((EnvironmentChangeEvent) event).getKeys())) { // 在此过滤dy-tp关心的的key
             refresh(environment);
         }
     }
