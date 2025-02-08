@@ -49,7 +49,7 @@
         </dependency>
         <dependency>
             <groupId>org.dromara.dynamictp</groupId>
-            <artifactId>dynamic-tp-spring-boot-starter-nacos</artifactId>
+            <artifactId>dynamic-tp-spring-cloud-starter-nacos</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

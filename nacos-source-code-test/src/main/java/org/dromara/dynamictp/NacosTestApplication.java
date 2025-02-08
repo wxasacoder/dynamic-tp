@@ -2,8 +2,10 @@ package org.dromara.dynamictp;
 
 import org.dromara.dynamictp.spring.annotation.EnableDynamicTp;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.SpringVersion;
 
@@ -17,8 +19,8 @@ import org.springframework.core.SpringVersion;
 @EnableAspectJAutoProxy(exposeProxy = true, proxyTargetClass = true)
 public class NacosTestApplication {
     public static void main(String[] args) {
-        String version = SpringVersion.getVersion();
-        System.err.println(version);
-        SpringApplication.run(NacosTestApplication.class, args);
+        System.err.println("SpringVersion："+ SpringVersion.getVersion() + "SpringBootVersion:" + SpringBootVersion.getVersion());
+        ConfigurableApplicationContext run = SpringApplication.run(NacosTestApplication.class, args);
+        System.err.println(run.getBean("dtpExecutor1").getClass().getSimpleName());
     }
 }
