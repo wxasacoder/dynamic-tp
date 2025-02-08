@@ -56,6 +56,9 @@ public class CloudNacosRefresher extends AbstractSpringRefresher implements Smar
          * 这个 refresher 是一个监听器，他会监听容器准备完毕事件， 随后注册一个 com.alibaba.nacos.api.config.listener.Listener
          * 随后当这个 listener 被调用的时候，会发出一个 RefreshEvent 后续的流程就是上面的运行过程
          *
+         * 而 Nacos 的更新模式是poll模式，默认是 5 sec 一次去拉取新的配置，如果有则调用 com.alibaba.nacos.api.config.listener.Listener
+         * NacosConfigService 在被初始化的时候 会 new 一个 ClientWorker 这个随后就会使用丢一个周期性的 间隔 5秒的任务到周期性线程池中，进行周期行的检查config是否在被更新
+         * new NacosConfigManager -> new NacosConfigService -> new ClientWorker -> start startInternal()
          */
         if (needRefresh(((EnvironmentChangeEvent) event).getKeys())) { // 在此过滤dy-tp关心的的key
             refresh(environment);
