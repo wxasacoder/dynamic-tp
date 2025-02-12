@@ -39,6 +39,10 @@ public class DtpLifecycle implements LifeCycleManagement {
 
     private final AtomicBoolean running = new AtomicBoolean(false);
 
+    public DtpLifecycle() {
+        log.info("DtpLifecycle init start");
+    }
+
     @Override
     public void start() {
         if (this.running.compareAndSet(false, true)) {

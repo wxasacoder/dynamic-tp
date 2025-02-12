@@ -61,6 +61,7 @@ import static org.dromara.dynamictp.core.support.DtpLifecycleSupport.shutdownGra
 
 /**
  * BeanPostProcessor that handles all related beans managed by Spring.
+ * 将所有的dytp的线程池注册至 registry 如果是一个有注解的常规的自建线程池 则创建一个对应的 adpter 然后注册到 registry 中
  *
  * @author yanhom
  * @since 1.0.0

@@ -23,7 +23,6 @@ public class NacosTestApplication {
     public static void main(String[] args) {
         System.err.println("SpringVersion："+ SpringVersion.getVersion() + "SpringBootVersion:" + SpringBootVersion.getVersion());
         ConfigurableApplicationContext run = SpringApplication.run(NacosTestApplication.class, args);
-        ThreadPoolExecutor myCustomExecutor = (ThreadPoolExecutor) run.getBean("myCustomExecutor");
-        System.err.println(myCustomExecutor.getClass().getSimpleName());
+//        System.err.println(run.getBean("dtpExecutor1").getClass().getSimpleName());
     }
 }
